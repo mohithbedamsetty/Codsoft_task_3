@@ -1,0 +1,42 @@
+User,Movie,Rating
+mohith,Inception,5
+mohith,Titanic,3
+mohith,Avatar,4
+
+pragna,Inception,4
+pragna,Titanic,5
+pragna,Avatar,2
+pragna,Interstellar,5
+
+dhanvine,Inception,2
+dhanvine,Titanic,5
+dhanvine,Interstellar,4
+
+himanis,hTitanic,3
+himanis,Avatar,5
+himanis,Interstellar,4
+
+nagaraju,Inception,5
+nagaraju,Avatar,4
+nagaraju,Avengers,5
+nagaraju,Joker,3
+
+lakshmi,Titanic,4
+lakshmi,Joker,5
+lakshmi,Interstellar,5
+
+saradha,Inception,4
+saradha,Avengers,4
+saradha,Avatar,5
+
+siva kumar,Titanic,5
+siva kumar,Joker,4
+siva kumar,Avatar,3
+
+arjun,Inception,3
+arjun,Interstellar,5
+arjun,Avengers,4
+
+dvitthi,Avatar,5
+dvitthi,Avengers,5
+dvitthi,Joker,4
