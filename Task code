@@ -1,0 +1,60 @@
+from math import sqrt
+
+# Larger dataset
+ratings = {
+    "mohith": {"Inception": 5, "Titanic": 3, "Avatar": 4},
+    "pragna": {"Inception": 4, "Titanic": 5, "Avatar": 2, "Interstellar": 5},
+    "dhanvine": {"Inception": 2, "Titanic": 5, "Interstellar": 4},
+    "himanish": {"Titanic": 3, "Avatar": 5, "Interstellar": 4},
+    "nagaraju": {"Inception": 5, "Avatar": 4, "Avengers": 5, "Joker": 3},
+    "lakshmi": {"Titanic": 4, "Joker": 5, "Interstellar": 5},
+    "saradha": {"Inception": 4, "Avengers": 4, "Avatar": 5},
+    "siva kumar": {"Titanic": 5, "Joker": 4, "Avatar": 3},
+    "arjun": {"Inception": 3, "Interstellar": 5, "Avengers": 4},
+    "dvithi": {"Avatar": 5, "Avengers": 5, "Joker": 4}
+}
+
+# Cosine similarity
+def similarity(user1, user2):
+    common = set(ratings[user1]) & set(ratings[user2])
+    if not common:
+        return 0
+
+    sum1 = sum(ratings[user1][item] ** 2 for item in common)
+    sum2 = sum(ratings[user2][item] ** 2 for item in common)
+    dot_product = sum(ratings[user1][item] * ratings[user2][item] for item in common)
+
+    return dot_product / (sqrt(sum1) * sqrt(sum2))
+
+# Recommendation function
+def recommend(target_user):
+    scores = {}
+
+    for other_user in ratings:
+        if other_user == target_user:
+            continue
+
+        sim = similarity(target_user, other_user)
+
+        for item in ratings[other_user]:
+            if item not in ratings[target_user]:
+                scores.setdefault(item, 0)
+                scores[item] += sim * ratings[other_user][item]
+
+    recommendations = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    return recommendations
+
+# Run system
+if __name__ == "__main__":
+    print("Available Users:")
+    print(", ".join(ratings.keys()))
+
+    user = input("\nEnter your name: ")
+
+    if user not in ratings:
+        print("User not found! Try one from the list.")
+    else:
+        recs = recommend(user)
+        print(f"\n🎬 Recommended for {user}:")
+        for movie, score in recs:
+            print(f"⭐ {movie} (score: {round(score, 2)})")
